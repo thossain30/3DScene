@@ -1,0 +1,723 @@
+<!doctype html>
+<html>
+<head>
+   <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+    <script>
+        AFRAME.registerComponent('wow-sound', {
+            init: function () {            
+                var myBackgroundAudio = document.createElement("AUDIO");            myBackgroundAudio.src = "wow-sound.mp3";            
+                myBackgroundAudio.load();            
+                this.el.addEventListener('click', function () {            myBackgroundAudio.play();            
+                console.log("clicked");            
+                });
+            }        
+        });        
+    </script>
+    <script>
+        AFRAME.registerComponent('scary-sound', {
+            init: function () {            
+                var myBackgroundAudio = document.createElement("AUDIO");            myBackgroundAudio.src = "Scary-sound.mp3";            
+                myBackgroundAudio.load();            
+                this.el.addEventListener('click', function () {            myBackgroundAudio.play();            
+                console.log("clicked");            
+                });
+            }        
+        });        
+    </script>
+    <script>
+        AFRAME.registerComponent('spooky-sound', {
+            init: function () {            
+                var myBackgroundAudio = document.createElement("AUDIO");            myBackgroundAudio.src = "spooky-sound.mp3";            
+                myBackgroundAudio.load();            
+                this.el.addEventListener('click', function () {            myBackgroundAudio.play();            
+                console.log("clicked");            
+                });
+            }        
+        });        
+    </script>
+    <script>
+        AFRAME.registerComponent('change-color', {
+  init: function () {
+    var lastIndex = -1;
+    var COLORS = ["#bac4fa", "#ffffa2", "#d5bcf3"];
+    this.el.addEventListener('click', function (evt) {
+      lastIndex = (lastIndex + 1) % COLORS.length;
+      this.setAttribute('material', 'color', COLORS[lastIndex]);
+      console.log('I was clicked at: ', evt.detail.intersection.point);
+    });
+  }
+});
+    </script>
+    <title>My Scene</title>
+</head>
+    <body>
+        <a-scene>
+            <a-entity camera look-controls wasd-controls position="-3 3 8"
+                      rotation = "60 0 0"></a-entity>
+            <a-entity cursor="rayOrigin: mouse;" raycaster="objects: .clickable;">
+            <a-sphere class = "clickable" scary-sound position = "-10 5 -5" radius = "0.75" color = "#d5bcf3"></a-sphere>
+            <a-sphere class = "clickable" change-color scary-sound position = "-10 -5 -5" radius = "0.75"></a-sphere>
+            <a-entity position = "0 0 3.8">
+            </a-entity>
+            <a-entity 
+                      text="value: Original Painting
+                            by Piet Mondrian; height: 25; width: 25" 
+                      position="3.95269 6 5.14765" 
+                      rotation="0 -135 0">
+            </a-entity>
+                <a-entity 
+                      text="value: 3D Scene 
+                            by Tamjid Hossain; height: 25; width: 25; color: purple" 
+                      position="4 6 5" 
+                      rotation="0 -45 0">
+            </a-entity>
+            <a-entity text="value: Click on boxes for regular sound, 
+                              cones for spooky sound and 
+                              spheres for scary sound. Also Click on light blue boxes to change color :); height: 10; width: 10; color: #000" 
+                      position="-4 2 1" 
+                      rotation="0 45 0" >
+            </a-entity>
+            
+        
+        
+          <a-sky 
+                 color = "grey"
+                 rotation = "0 -90 15" 
+                 position = "0 0 -5"
+                >        
+          </a-sky>
+            <a-entity 
+                      wow-sound
+                      class = "clickable"
+                      position="-0.96046 3.51739 -3.43666" 
+                      geometry="height: 1.6; width: 2.45; depth: 2" 
+                      rotation="0 -29.999999999999996 0" 
+                      material="vertexColors: vertex; color: #c7c2d1" 
+                      id="kinda purple block"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class = "clickable"
+                      id="Blue box" 
+                      position="-0.409 5.361 -3.405"
+                      rotation="0 -29.999999999999996 0" 
+                      geometry="depth: 1.6; height: 1.6; width: 1.6" 
+                      material="color: #bac4fa"
+                       animation="property: material.color;from: #bac4fa;to: #ffffa2;loop: true;dir: alternate;dur: 3000" easing = "linear"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class = "clickable"
+                      id="Yellow Box" 
+                      position="1.105 3.557 -2.42386" 
+                      rotation="0 -29.999999999999996 0" 
+                      geometry="depth: 1.6; height: 1.6; width: 1.6" 
+                      material="color: #ffffa2"
+                      animation="property: material.color;from: #ffffa2;to: #bac4fa;loop: true;dir: alternate;dur: 3000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class = "clickable"
+                      id="rectangular box yellow"
+                      position="-1.553 0.427 -4.809"
+                      rotation="0 -29.999999999999996 0" 
+                      geometry="depth: 1.2; height: 2.4; width: 1.5" 
+                      material="color: #ffffa2"
+                      animation="property: material.color;from: #ffffa2;to: #bac4fa;loop: true;dir: alternate;dur: 3000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      spooky-sound
+                      class = "clickable"
+                      id="left cone" 
+                      geometry="primitive: cone; height: 2; radiusBottom: 2" 
+                      rotation="0 -29.999999999999996 90" 
+                      material="color: #99a4ee" 
+                      position="-5.55823 0.01295 -7.20902"
+                      animation="property: material.color;from: #99a4ee;to: #d5bcf3;loop: true;dir: alternate;dur: 3000" animation__2 = "property: rotation; to: 0 0 -360; loop: true; dur: 2000">
+            </a-entity>
+            <a-entity 
+                      spooky-sound
+                      class = "clickable"
+                      geometry="primitive: cone; height: 2; radiusBottom: 2" 
+                      rotation="0 -29.999999999999996 -90" 
+                      material="color: #99a4ee" 
+                      position="5.496 0.141 -0.751" 
+                      id="Right Cone"
+                      animation="property: material.color;from: #99a4ee;to: #d5bcf3;loop: true;dir: alternate;dur: 3000" animation__2 = "property: rotation; to: 0 0 360; loop: true; dur: 2000">
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class = "clickable"
+                      geometry="depth: 1.36; height: 1.6; width: 1.6" 
+                      material="color: #c7c7c7" 
+                      rotation="0 -29.999999999999996 0" 
+                      id="Middle box" 
+                      position="0.82889 -0.04927 -3.6497"
+                      animation="property: material.color;from: #c7c7c7;to: #a89586;loop: true;dir: alternate;dur: 3000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class = "clickable"
+                      geometry="depth: 3.01; height: 1.62; width: 2.41" 
+                      material="color: #a5a5a5" 
+                      rotation="0 -29.999999999999996 0" 
+                      position="0.1 -1.58 -5" 
+                      id="Bottom Middle black"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      spooky-sound
+                      class = "clickable"
+                      position="1.98776 -4.05041 -3.22417" 
+                      geometry="primitive: cone; height: 1.25; radiusBottom: 1.25" 
+                      rotation="0 -29.999999999999996 45" 
+                      material="color: #d5bcf3" 
+                      id="Pink COne"
+                      animation="property: material.color;from: #d5bcf3;to: #99a4ee;loop: true;dir: alternate;dur: 3000" animation__2 = "property: rotation; to: 360 0 0; loop: true; dur: 2000">
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class = "clickable"
+                      id="Blue 2" 
+                      position="1.54372 1.83744 -3.21455" 
+                      rotation="0 -29.999999999999996 0" 
+                      geometry="depth: 1.6; height: 1.5; width: 1.5" 
+                      material="color: #bac4fa"
+                      animation="property: material.color;from: #bac4fa;to: #ffffa2;loop: true;dir: alternate;dur: 3000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class = "clickable"
+                      id="Brown box?" 
+                      position="2.41506 -0.85095 -2.87648" 
+                      rotation="0 -29.999999999999996 0" 
+                      geometry="depth: 1.6; height: 1.6; width: 1.6" 
+                      material="color: #a89586"
+                      animation="property: material.color;from: #a89586;to: #c7c7c7;loop: true;dir: alternate;dur: 5000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      change-color
+                      class = "clickable"
+                      id="Light Blue" 
+                      position="3.75521 0.93402 -1.66065" 
+                      rotation="0 -29.999999999999996 0" 
+                      geometry="depth: 1.6; height: 1.5; width: 1.5" 
+                      material="color: #b0c4ea"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class = "clickable"
+                      position="-1.25 4.924 -4.557"
+                      geometry="height: 0.75; width: 0.75" 
+                      material="color: #a5a5a5" 
+                      rotation="0 -29.999999999999996 0" 
+                      id="Smol Box"
+                      animation="property: material.color;from: #a5a5a5;to: #fff;loop: true;dir: alternate;dur: 5000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class = "clickable"
+                      position="-0.50398 1.31262 -4.13638" 
+                      geometry="height: 0.75; width: 0.75" 
+                      material="color: #c7c2d1" 
+                      rotation="0 -29.999999999999996 0" 
+                      id="Smol Box Purp"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class = "clickable"
+                      position="1.85842 -2.23219 -2.82629" 
+                      geometry="height: 0.75; width: 0.75" 
+                      material="color: #bac4fa" 
+                      rotation="0 -29.999999999999996 0" 
+                      id="Smol Box Blue1"
+                      animation="property: material.color;from: #bac4fa;to: #ffffa2;loop: true;dir: alternate;dur: 5000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      change-color
+                      class = "clickable"
+                      position="2.52651 -2.23868 -2.19869" 
+                      geometry="height: 0.75; width: 0.75" 
+                      material="color: #b0c4ea" 
+                      rotation="0 -29.999999999999996 0" 
+                      id="Smol Box LBlue"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class = "clickable"
+                      position="1.06907 -1.296 -3.13425" 
+                      geometry="height: 0.75; width: 0.75" 
+                      material="color: #bac4fa" 
+                      rotation="0 -29.999999999999996 0" 
+                      id="Smol Box Blue2"
+                      animation="property: material.color;from: #bac4fa;to: #ffffa2;loop: true;dir: alternate;dur: 5000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class = "clickable"
+                      position="1.89513 0.41124 -2.82955" 
+                      geometry="height: 0.75; width: 0.75" 
+                      material="color: #a5a5a5" 
+                      rotation="0 -29.999999999999996 0" 
+                      id="Smol Box Black"
+                      animation="property: material.color;from: #a5a5a5;to: #fff;loop: true;dir: alternate;dur: 5000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class = "clickable"
+                      position="1.95887 -3.07456 -2.97015" 
+                      geometry="height: 0.75; width: 0.75" 
+                      material="color: #bac4fa" 
+                      rotation="0 -29.999999999999996 0" 
+                      id="Smol Box Blue3"
+                      animation="property: material.color;from: #bac4fa;to: #ffffa2;loop: true;dir: alternate;dur: 5000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class = "clickable"
+                      position="-2.55258 -0.53875 -5.72977" 
+                      geometry="height: 0.75; width: 0.75" 
+                      material="color: #c7c2d1" 
+                      rotation="0 -29.999999999999996 0" 
+                      id="SmolPink"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class = "clickable"
+                      position="0.27066 -3.10167 -3.52522" 
+                      geometry="height: 0.75; width: 0.75" 
+                      material="color: #fff" 
+                      rotation="0 -29.999999999999996 0" 
+                      id="SmolWh"
+                       animation="property: material.color;from: #fff;to: #a5a5a5;loop: true;dir: alternate;dur: 5000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class = "clickable"
+                      position="-3.56308 -0.4144 -5.44659" 
+                      geometry="height: 0.75; width: 0.75" 
+                      material="color: #a89586" 
+                      rotation="0 -29.999999999999996 0" 
+                      id="SmolBr"
+                      animation="property: material.color;from: #a89586;to: #c7c7c7;loop: true;dir: alternate;dur: 5000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      change-color
+                      class = "clickable"
+                      position="3.55479 -2.23599 -2.23694" 
+                      geometry="height: 0.75; width: 0.75" 
+                      material="color: #b0c4ea" 
+                      rotation="0 -29.999999999999996 0" 
+                      id="SmolLblue2"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class = "clickable"
+                      id="White upleft" 
+                      position="-2.38958 2.69159 -5.25763" 
+                      rotation="0 -29.999999999999996 0" 
+                      geometry="depth: 1.6; height: 1.6; width: 1.5" 
+                      material="color: #fff"
+                       animation="property: material.color;from: #fff;to: #a5a5a5;loop: true;dir: alternate;dur: 5000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class = "clickable"
+                      id="BlackLeft" 
+                      position="-3.70023 0.80403 -6.51088" 
+                      rotation="0 -29.999999999999996 0" 
+                      geometry="depth: 1.6; height: 1.6; width: 1.6" 
+                      material="color: #a5a5a5"
+                      animation="property: material.color;from: #a5a5a5;to: #fff;loop: true;dir: alternate;dur: 5000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class = "clickable"
+                      id="Yellow Bot" 
+                      position="0.87287 -4.40421 -3.73587" 
+                      rotation="0 -29.999999999999996 0" 
+                      geometry="depth: 1.6; height: 1.5; width: 1.5" 
+                      material="color: #ffffa2"
+                      animation="property: material.color;from: #ffffa2;to: #bac4fa;loop: true;dir: alternate;dur: 5000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class = "clickable"
+                      id="yellow botleft" 
+                      position="-3.12906 -1.83645 -5.64244" 
+                      rotation="0 -29.999999999999996 0" 
+                      geometry="depth: 1.6; height: 1.6; width: 1.5" 
+                      material="color: #ffffa2"
+                      animation="property: material.color;from: #ffffa2;to: #bac4fa;loop: true;dir: alternate;dur: 5000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class="clickable" 
+                      id="White bot?" 
+                      position="-0.77934 -3.43554 -4.49542" 
+                      rotation="0 -29.999999999999996 0" 
+                      geometry="depth: 1.6; height: 1.5; width: 1.5" 
+                      material="color: #fff"
+                       animation="property: material.color;from: #fff;to: #a5a5a5;loop: true;dir: alternate;dur: 5000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      spooky-sound
+                      class="clickable" 
+                      position="-2.28897 3.95112 -4.42078" 
+                      geometry="primitive: cone; height: 1.25; radiusBottom: 1.25" 
+                      rotation="0 -29.999999999999996 225" 
+                      material="color: #a5a5a5" 
+                      id="BlackConewest"
+                      animation="property: material.color;from: #a5a5a5;to: #fff;loop: true;dir: alternate;dur: 5000"
+                      animation__2 = "property: rotation; to: 0 0 -360; loop: true; dur: 2000">
+            </a-entity>
+            <a-entity 
+                      spooky-sound
+                      class="clickable" 
+                      position="-3.41366 2.26587 -6.04195" 
+                      geometry="primitive: cone; height: 1.25; radiusBottom: 1.25" 
+                      rotation="0 -29.999999999999996 225" 
+                      material="color: #fff" 
+                      id="Whiteconewest"
+                       animation="property: material.color;from: #fff;to: #a5a5a5;loop: true;dir: alternate;dur: 5000"
+                      animation__2 = "property: rotation; to: 0 0 -360; loop: true; dur: 2000">
+            </a-entity>
+            <a-entity 
+                      spooky-sound
+                      class="clickable" 
+                      position="2.78802 3.18921 -2.57073" 
+                      geometry="primitive: cone; height: 1.25; radiusBottom: 1.25" 
+                      rotation="0 -29.999999999999996 135" 
+                      material="color: #a5a5a5" 
+                      id="BlackConeEast"
+                      animation="property: material.color;from: #a5a5a5;to: #fff;loop: true;dir: alternate;dur: 5000"
+                      animation__2 = "property: rotation; to: 0 0 360; loop: true; dur: 2000">
+            </a-entity>
+            <a-entity 
+                      spooky-sound
+                      class="clickable"
+                      position="-1.10257 5.55256 -4.47809" 
+                      geometry="primitive: cone; height: 1.25; radiusBottom: 1.25" 
+                      rotation="0 -29.999999999999996 225" 
+                      material="color: #a5a5a5" 
+                      id="BlackConenorthsmol" 
+                      scale="0.5 0.5 0.5"
+                      animation="property: material.color;from: #a5a5a5;to: #fff;loop: true;dir: alternate;dur: 5000"
+                      animation__2 = "property: rotation; to: 0 0 -360; loop: true; dur: 2000">
+            </a-entity>
+            <a-entity 
+                      spooky-sound
+                      class="clickable"
+                      position="0.88977 4.96164 -2.92196" 
+                      geometry="primitive: cone; height: 1.25; radiusBottom: 1.25" 
+                      rotation="0 -29.999999999999996 135" 
+                      material="color: #a5a5a5" 
+                      id="BlackConenorthE" 
+                      scale=""
+                      animation="property: material.color;from: #a5a5a5;to: #fff;loop: true;dir: alternate;dur: 5000"
+                      animation__2 = "property: rotation; to: 0 0 -360; loop: true; dur: 2000">
+            </a-entity>
+            <a-entity 
+                      spooky-sound
+                      class="clickable"
+                      position="-0.0382 -6.18349 -3.99191" 
+                      geometry="primitive: cone; height: 1.25; radiusBottom: 1.25" 
+                      rotation="0 -29.999999999999996 180" 
+                      material="color: #d5bcf3" 
+                      id="PinkconeSouth" 
+                      scale="1.25 1.25 1"
+                      animation="property: material.color;from: #d5bcf3;to: #99a4ee;loop: true;dir: alternate;dur: 5000" 
+                      animation__2 = "property: rotation; to: 360 0 0; loop: true; dur: 2000">
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class="clickable" 
+                      id="White rectangle" 
+                      position="0.16105 1.72458 -3.33608" 
+                      rotation="0 -29.999999999999996 0" 
+                      geometry="depth: 1.6; height: 1.6; width: 0.75" 
+                      material="color: #fff"
+                      animation="property: material.color;from: #fff;to: #a5a5a5;loop: true;dir:alternate;dur: 5000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      change-color
+                      class="clickable"
+                      id="Lblue Rectangle" 
+                      position="-0.27927 -0.05194 -4.48716" 
+                      rotation="0 -29.999999999999996 0" 
+                      geometry="depth: 1.6; height: 1.6; width: 0.75" 
+                      material="color: #b0c4ea"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      change-color
+                      class="clickable"
+                      id="Lblue RectangleHor" 
+                      position="-1.06427 2.24906 -3.91868" 
+                      rotation="0 -29.999999999999996 90" 
+                      geometry="depth: 1.6; height: 1.6; width: 0.75" 
+                      material="color: #b0c4ea"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      change-color
+                      class="clickable"
+                      id="blue Rectangle" 
+                      position="2.39581 0.90941 -2.00103" 
+                      rotation="0 -29.999999999999996 0" 
+                      geometry="depth: 1.6; height: 1.6; width: 0.75" 
+                      material="color: #bac4fa"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class="clickable"
+                      id="Grey Rectangle" 
+                      position="-2.80968 0.87535 -5.30957" 
+                      rotation="0 -29.999999999999996 0" 
+                      geometry="depth: 1.6; height: 1.6; width: 0.75" 
+                      material="color: #c7c7c7" 
+                      animation="property: material.color;from: #c7c7c7;to: #a89586;loop: true;dir: alternate;dur: 5000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class="clickable" 
+                      id="Grey Rectangle2" 
+                      position="3.33512 -0.88355 -1.86052" rotation="0 -29.999999999999996 0" 
+                      geometry="depth: 1.6; height: 1.6; width: 0.75" material="color: #c7c7c7" 
+                      animation="property: material.color;from: #c7c7c7;to: #a89586;loop: true;dir: alternate;dur: 5000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class="clickable"
+                      id="Grey RectangleH" 
+                      position="2.9141 2.24357 -2.08879" 
+                      rotation="0 -29.999999999999996 90" 
+                      geometry="depth: 1.6; height: 1.6; width: 0.75" 
+                      material="color: #c7c7c7" 
+                      animation="property: material.color;from: #c7c7c7;to: #a89586;loop: true;dir: alternate;dur: 5000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class="clickable" 
+                      id="Grey Rectangle3" 
+                      position="-1.92409 -1.76607 -5.07442" 
+                      rotation="0 -29.999999999999996 0" 
+                      geometry="depth: 1.6; height: 1.6; width: 0.75" 
+                      material="color: #c7c7c7" 
+                      animation="property: material.color;from: #c7c7c7;to: #a89586;loop: true;dir: alternate;dur: 5000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      spooky-sound
+                      class="clickable" 
+                      position="3.863 2.10587 -1.426" 
+                      geometry="primitive: cone; height: 1.25; radiusBottom: 1.25" 
+                      rotation="0 -29.999999999999996 135" 
+                      material="color: #a5a5a5" 
+                      id="BlackConeeastsmol" 
+                      scale="0.5 0.5 0.5" 
+                      animation="property: material.color;from: #a5a5a5;to: #fff;loop: true;dir: alternate;dur: 5000"
+                      animation__2 = "property: rotation; to: 0 0 -360; loop: true; dur: 2000">
+            </a-entity>
+            <a-entity 
+                      spooky-sound
+                      class="clickable"
+                      position="3.92545 -1.98069 -1.43081" 
+                      geometry="primitive: cone; height: 1.25; radiusBottom: 1.25" 
+                      rotation="0 -29.999999999999996 45" 
+                      material="color: #fff" 
+                      id="WhiteConeeastsmol-2" 
+                      scale="0.5 0.5 0.5"  
+                      animation="property: material.color;from: #fff;to: #a5a5a5;loop: true;dir: alternate;dur: 5000"
+                      animation__2 = "property: rotation; to: 0 0 -360; loop: true; dur: 2000">
+            </a-entity>
+            <a-entity 
+                      spooky-sound
+                      class="clickable"
+                      position="-4.02512 -1.98694 -6.19141" 
+                      geometry="primitive: cone; height: 1.25; radiusBottom: 1.25" 
+                      rotation="0 -29.999999999999996 -45" 
+                      material="color: #a5a5a5" 
+                      id="BlackConeeastsmol2" 
+                      scale="0.5 0.5 0.5" 
+                      animation="property: material.color;from: #a5a5a5;to: #fff;loop: true;dir: alternate;dur: 5000"
+                      animation__2 = "property: rotation; to: 0 0 360; loop: true; dur: 2000">
+            </a-entity>
+            <a-entity 
+                      spooky-sound
+                      class="clickable" 
+                      position="-3.42215 -2.92025 -5.71773" 
+                      geometry="primitive: cone; height: 1.25; radiusBottom: 1.25" 
+                      rotation="0 -29.999999999999996 -45" 
+                      material="color: #a5a5a5" 
+                      id="BlackConeeastsmol3" 
+                      scale="0.5 0.5 0.5" 
+                      animation="property: material.color;from: #a5a5a5;to: #fff;loop: true;dir: alternate;dur: 5000"
+                      animation__2 = "property: rotation; to: 0 0 -360; loop: true; dur: 2000">
+            </a-entity>
+            <a-entity 
+                      spooky-sound
+                      class="clickable" 
+                      position="-1.7969 -4.57506 -4.93181" 
+                      geometry="primitive: cone; height: 1.25; radiusBottom: 1.25" 
+                      rotation="0 -29.999999999999996 -45" 
+                      material="color: #a5a5a5" 
+                      id="BlackConeeastsmol4" 
+                      scale="0.5 0.5 0.5" 
+                      animation="property: material.color;from: #a5a5a5;to: #fff;loop: true;dir: alternate;dur: 5000" 
+                      animation__2 = "property: rotation; to: 0 0 -360; loop: true; dur: 2000">
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      change-color
+                      class="clickable" 
+                      id="Lblue RectangleHor2" 
+                      position="-1.06427 -4.8251 -3.91868" 
+                      rotation="0 -29.999999999999996 90" 
+                      geometry="depth: 1.6; height: 1.6; width: 0.75" 
+                      material="color: #b0c4ea"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class="clickable"
+                      id="Black bot2?" 
+                      position="-2.21449 -3.37157 -5.24428" 
+                      rotation="0 -29.999999999999996 0" 
+                      geometry="depth: 1.6; height: 1.5; width: 1.5" 
+                      material="color: #a5a5a5" 
+                      animation="property: material.color;from: #a5a5a5;to: #fff;loop: true;dir: alternate;dur: 5000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class="clickable" 
+                      id="BluRec" 
+                      position="-4.35581 -0.98165 -6.05956" 
+                      rotation="0 -29.999999999999996 0" 
+                      geometry="depth: 1.6; height: 1.6; width: 0.75" 
+                      material="color: #bac4fa" 
+                      animation="property: material.color;from: #bac4fa;to: #ffffa2;loop: true;dir: alternate;dur: 5000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      change-color
+                      class="clickable"
+                      id="LbluRec" 
+                      position="3.94503 -0.90226 -0.98832" 
+                      rotation="0 -29.999999999999996 0" 
+                      geometry="depth: 1.6; height: 1.6; width: 0.75" 
+                      material="color: #b0c4ea"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class="clickable"
+                      id="GreyRec" 
+                      position="0.74783 -2.67773 -2.55555" 
+                      rotation="0 -29.999999999999996 0" 
+                      geometry="depth: 1.6; height: 1.6; width: 0.75" 
+                      material="color: #c7c7c7" 
+                      animation="property: material.color;from: #fff;to: #a5a5a5;loop: true;dir: alternate;dur: 5000" 
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      wow-sound
+                      class="clickable"
+                      id="Grey Rectangle3" 
+                      position="3.22991 -3.11285 -2.69754" 
+                      rotation="0 -29.999999999999996 90" 
+                      geometry="depth: 1.6; height: 1.6; width: 0.75" 
+                      material="color: #c7c7c7" 
+                      animation="property: material.color;from: #c7c7c7;to: #a89586;loop: true;dir: alternate;dur: 5000"
+                      animation__mouseenter="property: scale; to: 1.5 1.5 1.5; startEvents: mouseenter; dur: 500";
+                      animation__mouseleave="property: scale; to: 1 1 1; startEvents: mouseleave; dur: 500";>
+            </a-entity>
+            <a-entity 
+                      spooky-sound
+                      class="clickable"
+                      position="0.0622 6.69926 -4.017" 
+                      geometry="primitive: cone; height: 1.25; radiusBottom: 1.25" 
+                      rotation="0 -29.999999999999996 0" 
+                      material="color: #d5bcf3" 
+                      id="PinkconeNorth" 
+                      animation="property: material.color;from: #d5bcf3;to: #99a4ee;loop: true;dir: alternate;dur: 5000" 
+                      animation__2 = "property: rotation; to: 0 0 360; loop: true; dur: 2000">
+            </a-entity>
+        </a-scene>
+    </body>
+    
